@@ -16,18 +16,41 @@ namespace api_vivaviatravel2._0
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
-            /*            string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            /*CONEXAO COM O BANCO DE DADOS*/
+             /*SOMEE.COM*/
+            string SqlConnection = builder.Configuration.GetConnectionString("SQL_Somee_Database");
+
+            builder.Services.AddDbContext<ApiDbContext>(options =>
+                                options.UseSqlServer(SqlConnection));
+
+            /* MYSQL
+             * string mySqlConnection = builder.Configuration.GetConnectionString("DefaultConnection");
 
                         builder.Services.AddDbContext<ApiDbContext>(options =>
                                             options.UseMySql(mySqlConnection,
                                             ServerVersion.AutoDetect(mySqlConnection)));*/
 
-            builder.Services.AddEntityFrameworkSqlServer()
+            /* SQL SERVER 
+             * builder.Services.AddEntityFrameworkSqlServer()
                 .AddDbContext<ApiDbContext>(
                         options => options.UseSqlServer(builder.Configuration.GetConnectionString("SQL_DataBase"))
-                    );
+                    );*/
 
-            builder.Services.AddCors();
+            //Cors
+            var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy(name: MyAllowSpecificOrigins,
+                    policy =>
+                    {
+                        policy.WithOrigins("*")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                    });
+            });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -37,12 +60,7 @@ namespace api_vivaviatravel2._0
                 app.UseSwaggerUI();
             }
 
-            app.UseCors(c =>
-            {
-                c.AllowAnyHeader();
-                c.AllowAnyMethod();
-                c.AllowAnyOrigin();
-            });
+            app.UseCors(MyAllowSpecificOrigins);
 
             app.UseHttpsRedirection();
 

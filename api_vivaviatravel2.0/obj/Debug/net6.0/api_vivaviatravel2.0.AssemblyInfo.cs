@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("api_vivaviatravel2.0")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6b1f3047a061cdb6f68fc65080a65c7ee039e447")]
 [assembly: System.Reflection.AssemblyProductAttribute("api_vivaviatravel2.0")]
 [assembly: System.Reflection.AssemblyTitleAttribute("api_vivaviatravel2.0")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
